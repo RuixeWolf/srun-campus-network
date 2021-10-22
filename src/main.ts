@@ -13,6 +13,13 @@ import { printLog } from '@utils/printLog'
  * @param {string} password - 密码
  */
 async function loginToNetwork (username: string, password: string) {
+  // 判断是否设置用户名密码
+  if (!username || !password) {
+    printLog('请在环境变量中设置深澜账号信息', '变量名："SRUN_ACCOUNT"，内容："用户名:密码"', 3)
+    return
+  }
+
+  // 登录校园网
   printLog('正在登录校园网...')
   const loginRes = await login(username, password)
 
@@ -34,7 +41,11 @@ async function loginToNetwork (username: string, password: string) {
 // 程序主入口
 (async function () {
   // 登录校园网
-  await loginToNetwork(USER_NAME, PASSWORD)
+  try {
+    await loginToNetwork(USER_NAME, PASSWORD)
+  } catch (error) {
+    printLog('请求失败，请检查网络连接', (error as Error).message, 3)
+  }
 
   // 等待 5 秒
   await new Promise<void>(resolve => {
