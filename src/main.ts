@@ -20,7 +20,6 @@ async function loginToNetwork (username: string, password: string) {
   }
 
   // 登录校园网
-  printLog('正在登录校园网...')
   const loginRes = await login(username, password)
 
   // 登录成功
@@ -40,11 +39,18 @@ async function loginToNetwork (username: string, password: string) {
 
 // 程序主入口
 (async function () {
-  // 登录校园网
-  try {
-    await loginToNetwork(USER_NAME, PASSWORD)
-  } catch (error) {
-    printLog('请求失败:', (error as Error).message, 3)
+  // 尝试 5 次登录校园网
+  for (let loginTimes: number = 0; loginTimes < 5; loginTimes++) {
+    try {
+      // 登录校园网
+      printLog('正在登录校园网...')
+      await loginToNetwork(USER_NAME, PASSWORD)
+    } catch (error) {
+      // 网络连接异常
+      printLog('请求失败:', (error as Error).message, 3)
+      continue
+    }
+    break
   }
 
   // 等待 5 秒后结束程序
