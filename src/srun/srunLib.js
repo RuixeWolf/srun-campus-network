@@ -1,4 +1,3 @@
-
 /**
  * @param {string} a
  * @param {boolean} b
@@ -38,6 +37,7 @@ function l (a, b) {
 }
 
 /**
+ * 深澜 xEncode
  * @param {string} str
  * @param {any} key
  */
@@ -94,6 +94,7 @@ function getbyte (s, i) {
 }
 
 /**
+ * 深澜 Base64 加密
  * @param {string | any[]} s
  */
 export function base64Encode (s) {
