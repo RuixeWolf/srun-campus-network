@@ -8,7 +8,7 @@
     "build": "esbuild ./src/main.ts --bundle --minify --platform=node --outfile=./dist/main.js"
   },
   "keywords": [
-    "campus network",
+    "campus-network",
     "srun"
   ],
   "author": "RuixeWolf",

@@ -35,7 +35,7 @@ npm run build
 ├─dist - 打包输出目录
 └─src - 项目源码
    ├───api - API 目录
-   ├───interfaces - Typescript 接口
+   ├───interfaces - TypeScript 接口
    ├───srun - 深澜软件相关
    └───utils - 工具库
 ```
