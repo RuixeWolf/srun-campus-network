@@ -44,10 +44,11 @@ async function loginToNetwork (username: string, password: string) {
   try {
     await loginToNetwork(USER_NAME, PASSWORD)
   } catch (error) {
-    printLog('请求失败，请检查网络连接', (error as Error).message, 3)
+    printLog('请求失败:', (error as Error).message, 3)
   }
 
-  // 等待 5 秒
+  // 等待 5 秒后结束程序
+  printLog('5 秒后自动关闭')
   await new Promise<void>(resolve => {
     setTimeout(() => resolve(), 5000)
   })
