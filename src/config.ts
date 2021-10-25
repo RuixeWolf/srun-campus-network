@@ -1,5 +1,8 @@
+// 深澜账号环境变量名称
+const envName: string = 'SRUN_ACCOUNT'
+
 // 从环境变量获取深澜账号
-const SRUN_ACCOUNT: string[] = (process.env.SRUN_ACCOUNT as string).split(':')
+const SRUN_ACCOUNT: string[] = (process.env[envName] as string).split(':')
 
 /** 用户名 */
 export const USER_NAME: string = SRUN_ACCOUNT[0]
