@@ -1,16 +1,33 @@
 import chalk from 'chalk'
+import process from 'process'
+
+interface PrintingOptions {
+  /** Printed message */
+  message: string
+  /** Message detail */
+  detail?: string
+  /**
+   * Message level
+   * + 0: Information
+   * + 1: Done
+   * + 2: Warning
+   * + 3: Error
+   */
+  level?: number
+  /** Rewrite current line */
+  rewrite?: boolean
+}
 
 /**
  * Print log message
- * @param {string} message - Printed message
- * @param {string} [detail = ''] - Message detail
- * @param {number} [level = 0] - Message level
- * + 0: Information
- * + 1: Done
- * + 2: Warning
- * + 3: Error
+ * @param {PrintingOptions} options - Printing options
  */
-export function printLog (message: string, detail: string = '', level: number = 0): void {
+export function printLog ({
+  message = '',
+  detail = '',
+  level = 0,
+  rewrite = false
+}: PrintingOptions): void {
   // Init data
   let messageType: string
   const timeStr: string = `[${new Date().toLocaleTimeString()}]`
@@ -55,5 +72,11 @@ export function printLog (message: string, detail: string = '', level: number = 
 
   // Print log message
   const content: string = `${messageType} ${timeStr} ${message} ${detail}`
-  console.log(content)
+  if (rewrite) {
+    process.stdout.cursorTo(0)
+    process.stdout.clearLine(0)
+    process.stdout.write(content)
+  } else {
+    console.log(content)
+  }
 }
