@@ -6,6 +6,7 @@ import { USER_NAME, PASSWORD } from '@/config'
 import { login } from '@srun/user'
 import { LoginSuccessResponse, LoginFailureResponse } from '@interfaces/user'
 import { printLog } from '@utils/printLog'
+import chalk from 'chalk'
 
 /**
  * 登录校园网
@@ -57,6 +58,9 @@ async function wait (time: number, message?: string): Promise<void> {
 
 // 程序主入口
 (async function () {
+  // 打印工具名称与版本号
+  console.log(chalk.cyan('======= 深澜软件校园网自动登录工具 v1.0.0 ======='))
+
   // 尝试 5 次登录校园网
   for (let loginTimes: number = 0; loginTimes < 5; loginTimes++) {
     try {
